@@ -15,6 +15,8 @@ public class ImageProcessing {
 		twoDToImage(trimmed, "./src/trimmed_couple.jpg");
 		// int[][] allFilters = stretchHorizontally(shrinkVertically(colorFilter(negativeColor(trimBorders(invertImage(imageData), 50)), 200, 20, 40)));
 		// Painting with pixels
+		int[][] negative = negativeColor(imageData);
+		twoDToImage(negative, "./src/negative_couple.jpg");
 	}
 	// Image Processing Methods
 	public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
@@ -40,11 +42,13 @@ public class ImageProcessing {
 			for (int j = 0; j < width; j++) {
 				int[] rgba = getRGBAFromPixel(imageTwoD[i][j]);
 				for (int k = 0; k < 3; k++) {
-					rgba[k] = 255 % (255 - rgba[k]);
+					rgba[k] = (255 - rgba[k]);
 				}
+				int hexa = getColorIntValFromRGBA(rgba);
+				negativeImage[i][j] = hexa;
 			}
 		}
-		return negativeImg;
+		return negativeImage;
 	}
 	public static int[][] stretchHorizontally(int[][] imageTwoD) {
 		// TODO: Fill in the code for this method
