@@ -10,7 +10,7 @@ public class ImageProcessing {
 		int[][] imageData = imgToTwoD("./src/couple.jpg");
     // Or load your own image using a URL!
 		//int[][] imageData = imgToTwoD("https://content.codecademy.com/projects/project_thumbnails/phaser/bug-dodger.png");
-		viewImageData(imageData);
+		//viewImageData(imageData);
 		int[][] trimmed = trimBorders(imageData, 60);
 		twoDToImage(trimmed, "./src/trimmed_couple.jpg");
 		// int[][] allFilters = stretchHorizontally(shrinkVertically(colorFilter(negativeColor(trimBorders(invertImage(imageData), 50)), 200, 20, 40)));
@@ -33,8 +33,18 @@ public class ImageProcessing {
 		}
 	}
 	public static int[][] negativeColor(int[][] imageTwoD) {
-		// TODO: Fill in the code for this method
-		return null;
+		int height = imageTwoD.length;
+		int width = imageTwoD[0].length;
+		int[][] negativeImage = new int[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int[] rgba = getRGBAFromPixel(imageTwoD[i][j]);
+				for (int k = 0; k < 3; k++) {
+					rgba[k] = 255 % (255 - rgba[k]);
+				}
+			}
+		}
+		return negativeImg;
 	}
 	public static int[][] stretchHorizontally(int[][] imageTwoD) {
 		// TODO: Fill in the code for this method

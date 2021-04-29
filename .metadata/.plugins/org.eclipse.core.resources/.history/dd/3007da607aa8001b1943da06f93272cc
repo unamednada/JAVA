@@ -1,0 +1,22 @@
+
+public class Calendar {
+	
+	public static void main(String[] args) {
+		String[][] calendar = {{"volunteer", "delivery", null, null, "doctor", null, "soccer"},
+		{null, "exam 1", null, "mechanic", null, null, "soccer"},
+		{"volunteer", "off work", null, "birthday", null, "concert", null},
+		{null, "exam 2", null, null, "doctor", null, "soccer"},
+		{"visit family", null, null, null, null, null, null}};
+		
+		for (int i = 0; i < calendar.length; i++) {
+			for (int j = 0; j < calendar[0].length; j++) {
+				if (calendar[i][j]!=null) {
+					System.out.println("Week: " + (i + 1) + ", Day: " + (j+1) +
+					", Event: " + calendar[i][j]);
+				}
+			}
+		}
+
+	}
+
+}
