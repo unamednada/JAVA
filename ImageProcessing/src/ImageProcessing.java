@@ -51,8 +51,17 @@ public class ImageProcessing {
 		return negativeImage;
 	}
 	public static int[][] stretchHorizontally(int[][] imageTwoD) {
-		// TODO: Fill in the code for this method
-		return null;
+		int height = imageTwoD.length;
+		int width = imageTwoD[0].length;
+		int[][] stretchedImage = new int[height][width * 2];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				stretchedImage[i][j] = imageTwoD[i][j];
+				stretchedImage[i][j + 1] = imageTwoD[i][j];
+			}
+		}
+		
+		return stretchedImage;
 	}
 	public static int[][] shrinkVertically(int[][] imageTwoD) {
 		// TODO: Fill in the code for this method
