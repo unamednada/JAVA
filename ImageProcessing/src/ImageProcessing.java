@@ -3,6 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Random;
 import javax.imageio.ImageIO;
 public class ImageProcessing {
 	public static void main(String[] args) {
@@ -24,8 +25,8 @@ public class ImageProcessing {
 		//twoDToImage(shrunk, "./shrunk_couple.jpg");
 		//int[][] inverted = invertImage(imageData);
 		//twoDToImage(inverted, "./inverted_couple.jpg");
-		int[][] filtered = colorFilter(imageData, 200, 20, 40);
-		twoDToImage(filtered, "./filtered_couple.jpg");
+		//int[][] filtered = colorFilter(imageData, -200, 100, -200);
+		//twoDToImage(filtered, "./filtered_couple.jpg");
 	}
 	// Image Processing Methods
 	public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
@@ -118,7 +119,8 @@ public class ImageProcessing {
 	}
 	// Painting Methods
 	public static int[][] paintRandomImage(int[][] canvas) {
-		// TODO: Fill in the code for this method
+		Random rand = new Random();
+		
 		return null;
 	}
 	public static int[][] paintRectangle(int[][] canvas, int width, int height, int rowPosition, int colPosition, int color) {
