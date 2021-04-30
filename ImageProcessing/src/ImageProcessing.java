@@ -127,10 +127,11 @@ public class ImageProcessing {
 		int[][] randomImage = new int[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				int[] rgba = getRGBAFromPixel(canvas[i][j]);
+				int[] rgba = new int[4];
 				rgba[0] = rand.nextInt(256);
 				rgba[1] = rand.nextInt(256);
 				rgba[2] = rand.nextInt(256);
+				rgba[3] = 255;
 				int hexa = getColorIntValFromRGBA(rgba);
 				randomImage[i][j] = hexa;
 				}
