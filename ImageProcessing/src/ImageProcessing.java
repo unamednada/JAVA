@@ -11,15 +11,17 @@ public class ImageProcessing {
     // Or load your own image using a URL!
 		//int[][] imageData = imgToTwoD("https://content.codecademy.com/projects/project_thumbnails/phaser/bug-dodger.png");
 		//viewImageData(imageData);
-		int[][] trimmed = trimBorders(imageData, 60);
-		twoDToImage(trimmed, "./trimmed_couple.jpg");
+		//int[][] trimmed = trimBorders(imageData, 60);
+		//twoDToImage(trimmed, "./trimmed_couple.jpg");
 		// int[][] allFilters = stretchHorizontally(shrinkVertically(colorFilter(negativeColor(trimBorders(invertImage(imageData), 50)), 200, 20, 40)));
 		// Painting with pixels
-		int[][] negative = negativeColor(imageData);
-		twoDToImage(negative, "./negative_couple.jpg");
+		//int[][] negative = negativeColor(imageData);
+		//twoDToImage(negative, "./negative_couple.jpg");
 		
 		int[][] stretched = stretchHorizontally(imageData);
 		twoDToImage(stretched, "./stretched_couple.jpg");
+		int[][] shrunk = shrinkVertically(imageData);
+		twoDToImage(shrunk, "./shrunk_couple.jpg");
 	}
 	// Image Processing Methods
 	public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
@@ -69,7 +71,7 @@ public class ImageProcessing {
 		int height = imageTwoD.length;
 		int width = imageTwoD[0].length;
 		int[][] shrunkImage = new int[height / 2][width];
-		for (int i = 0; i < height; i++) {
+		for (int i = 0; i < height / 2; i++) {
 			for (int j = 0; j < width; j++) {
 				shrunkImage[i][j] = imageTwoD[i *2][j];
 			}
@@ -77,8 +79,15 @@ public class ImageProcessing {
 		return shrunkImage;
 	}
 	public static int[][] invertImage(int[][] imageTwoD) {
-		// TODO: Fill in the code for this method
-		return null;
+		int height = imageTwoD.length;
+		int width = imageTwoD[0].length;
+		int[][] invertedImage = new int[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				invertedImage[height - i][width - j] = imageTwoD[i][j];
+			}
+		}
+		return invertedImage;
 	}
 	public static int[][] colorFilter(int[][] imageTwoD, int redChangeValue, int greenChangeValue, int blueChangeValue) {
 		// TODO: Fill in the code for this method
