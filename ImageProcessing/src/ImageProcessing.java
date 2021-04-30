@@ -18,10 +18,12 @@ public class ImageProcessing {
 		//int[][] negative = negativeColor(imageData);
 		//twoDToImage(negative, "./negative_couple.jpg");
 		
-		int[][] stretched = stretchHorizontally(imageData);
-		twoDToImage(stretched, "./stretched_couple.jpg");
-		int[][] shrunk = shrinkVertically(imageData);
-		twoDToImage(shrunk, "./shrunk_couple.jpg");
+		//int[][] stretched = stretchHorizontally(imageData);
+		//twoDToImage(stretched, "./stretched_couple.jpg");
+		//int[][] shrunk = shrinkVertically(imageData);
+		//twoDToImage(shrunk, "./shrunk_couple.jpg");
+		int[][] inverted = invertImage(imageData);
+		twoDToImage(inverted, "./inverted_couple.jpg");
 	}
 	// Image Processing Methods
 	public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
@@ -84,7 +86,7 @@ public class ImageProcessing {
 		int[][] invertedImage = new int[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				invertedImage[height - i][width - j] = imageTwoD[i][j];
+				invertedImage[height - 1 - i][width - 1 - j] = imageTwoD[i][j];
 			}
 		}
 		return invertedImage;
