@@ -27,6 +27,8 @@ public class ImageProcessing {
 		//twoDToImage(inverted, "./inverted_couple.jpg");
 		//int[][] filtered = colorFilter(imageData, -200, 100, -200);
 		//twoDToImage(filtered, "./filtered_couple.jpg");
+		int[][] random = paintRandomImage(imageData);
+		twoDToImage(random, "./random_couple.jpg");
 	}
 	// Image Processing Methods
 	public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
@@ -120,9 +122,23 @@ public class ImageProcessing {
 	// Painting Methods
 	public static int[][] paintRandomImage(int[][] canvas) {
 		Random rand = new Random();
-		
-		return null;
+		int height = canvas.length;
+		int width = canvas[0].length;
+		int[][] randomImage = new int[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int[] rgba = getRGBAFromPixel(canvas[i][j]);
+				rgba[0] = rand.nextInt(256);
+				rgba[1] = rand.nextInt(256);
+				rgba[2] = rand.nextInt(256);
+				int hexa = getColorIntValFromRGBA(rgba);
+				randomImage[i][j] = hexa;
+				}
+		}
+		return randomImage;
 	}
+		
+		
 	public static int[][] paintRectangle(int[][] canvas, int width, int height, int rowPosition, int colPosition, int color) {
 		// TODO: Fill in the code for this method
 		return null;
