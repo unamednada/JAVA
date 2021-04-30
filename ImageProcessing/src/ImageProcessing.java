@@ -22,8 +22,10 @@ public class ImageProcessing {
 		//twoDToImage(stretched, "./stretched_couple.jpg");
 		//int[][] shrunk = shrinkVertically(imageData);
 		//twoDToImage(shrunk, "./shrunk_couple.jpg");
-		int[][] inverted = invertImage(imageData);
-		twoDToImage(inverted, "./inverted_couple.jpg");
+		//int[][] inverted = invertImage(imageData);
+		//twoDToImage(inverted, "./inverted_couple.jpg");
+		int[][] filtered = colorFilter(imageData, 200, 20, 40);
+		twoDToImage(filtered, "./filtered_couple.jpg");
 	}
 	// Image Processing Methods
 	public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
@@ -92,8 +94,27 @@ public class ImageProcessing {
 		return invertedImage;
 	}
 	public static int[][] colorFilter(int[][] imageTwoD, int redChangeValue, int greenChangeValue, int blueChangeValue) {
-		// TODO: Fill in the code for this method
-		return null;
+		int height = imageTwoD.length;
+		int width = imageTwoD[0].length;
+		int[][] filteredImage = new int[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int[] rgba = getRGBAFromPixel(imageTwoD[i][j]);
+				rgba[0] += redChangeValue;
+				rgba[1] += greenChangeValue;
+				rgba[2] += blueChangeValue;
+				for (int k = 0; k < 3; k++) {
+					if (rgba[k] > 255) {
+						rgba[k] = 255;
+					} else if (rgba[k] < 0) {
+						rgba[k] = 0;
+					}
+				}
+				int hexa = getColorIntValFromRGBA(rgba);
+				filteredImage[i][j] = hexa;
+			}
+		}
+		return filteredImage;
 	}
 	// Painting Methods
 	public static int[][] paintRandomImage(int[][] canvas) {
