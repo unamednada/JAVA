@@ -7,16 +7,19 @@ import javax.imageio.ImageIO;
 public class ImageProcessing {
 	public static void main(String[] args) {
     // The provided images are apple.jpg, flower.jpg, and kitten.jpg
-		int[][] imageData = imgToTwoD("./src/couple.jpg");
+		int[][] imageData = imgToTwoD("./couple.jpg");
     // Or load your own image using a URL!
 		//int[][] imageData = imgToTwoD("https://content.codecademy.com/projects/project_thumbnails/phaser/bug-dodger.png");
 		//viewImageData(imageData);
 		int[][] trimmed = trimBorders(imageData, 60);
-		twoDToImage(trimmed, "./src/trimmed_couple.jpg");
+		twoDToImage(trimmed, "./trimmed_couple.jpg");
 		// int[][] allFilters = stretchHorizontally(shrinkVertically(colorFilter(negativeColor(trimBorders(invertImage(imageData), 50)), 200, 20, 40)));
 		// Painting with pixels
 		int[][] negative = negativeColor(imageData);
-		twoDToImage(negative, "./src/negative_couple.jpg");
+		twoDToImage(negative, "./negative_couple.jpg");
+		
+		int[][] stretched = stretchHorizontally(imageData);
+		twoDToImage(stretched, "./stretched_couple.jpg");
 	}
 	// Image Processing Methods
 	public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
@@ -56,16 +59,22 @@ public class ImageProcessing {
 		int[][] stretchedImage = new int[height][width * 2];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				stretchedImage[i][j] = imageTwoD[i][j];
-				stretchedImage[i][j + 1] = imageTwoD[i][j];
+				stretchedImage[i][j * 2] = imageTwoD[i][j];
+				stretchedImage[i][j * 2 + 1] = imageTwoD[i][j];
 			}
 		}
-		
 		return stretchedImage;
 	}
 	public static int[][] shrinkVertically(int[][] imageTwoD) {
-		// TODO: Fill in the code for this method
-		return null;
+		int height = imageTwoD.length;
+		int width = imageTwoD[0].length;
+		int[][] shrunkImage = new int[height / 2][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				shrunkImage[i][j] = imageTwoD[i *2][j];
+			}
+		}
+		return shrunkImage;
 	}
 	public static int[][] invertImage(int[][] imageTwoD) {
 		// TODO: Fill in the code for this method
